@@ -36,3 +36,7 @@ TEST_F(CalculatorTest, divide) {
   EXPECT_EQ(calculator.divide(10, 2), 5);
 }
 
+int main(int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
