@@ -36,8 +36,8 @@ pipeline {
 
             steps {
                 //bat 'id'
-                bat 'gcc -o CalculatorTest -I ./src ./src/CalculatorMain.cpp ./src/Calculator.cpp -lstdc++ -lm'
-                bat './CalculatorTest'
+                bat 'gcc -o CalculatorTest.exe -I ./src ./src/CalculatorMain.cpp ./src/Calculator.cpp -lstdc++ -lm'
+                bat 'CalculatorTest.exe'
             }
         }
         stage('SonarQube (Quality)') {
