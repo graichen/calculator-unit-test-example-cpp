@@ -36,9 +36,8 @@ pipeline {
 
             steps {
                 //bat 'id'
-                bat 'gcc --coverage -o CalculatorTest -I ./src -I /usr/src/gtest/include/ ./src/Calculator.cpp ./test/CalculatorTest.cpp -lgtest -lstdc++ -lm -lpthread'
+                bat 'gcc -o CalculatorTest -I ./src ./src/Calculator.cpp -lstdc++ -lm -lpthread'
                 bat './CalculatorTest'
-                bat 'gcov Calculator'
             }
         }
         stage('SonarQube (Quality)') {
@@ -52,8 +51,8 @@ pipeline {
             //}
 
             steps {
-                bat 'build-wrapper-win-x86-64.exe --out-dir bw-output gcc -o CalculatorTest -I ./src -I /usr/src/gtest/include/ ./src/Calculator.cpp ./test/CalculatorTest.cpp -lgtest -lstdc++ -lm -lpthread'
-                bat 'sonar-scanner.bat -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_LOGIN_KEY} -Dsonar.projectKey=graichen_calculator-unit-test-example-cpp -Dsonar.organization=graichen -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output -Dsonar.cfamily.gcov.reportsPath=.'
+                bat 'build-wrapper-win-x86-64.exe --out-dir bw-output gcc -o CalculatorTest -I ./src ./src/Calculator.cpp -lstdc++ -lm -lpthread'
+                bat 'sonar-scanner.bat -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_LOGIN_KEY} -Dsonar.projectKey=graichen_calculator-unit-test-example-cpp -Dsonar.organization=graichen -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output '
             }
         }
 
