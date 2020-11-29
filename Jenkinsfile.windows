@@ -36,7 +36,7 @@ pipeline {
 
             steps {
                 //bat 'id'
-                bat 'gcc -o CalculatorTest -I ./src ./src/Calculator.cpp -lstdc++ -lm'
+                bat 'gcc -o CalculatorTest -I ./src ./src/CalculatorMain.cpp ./src/Calculator.cpp -lstdc++ -lm'
                 bat './CalculatorTest'
             }
         }
@@ -51,7 +51,7 @@ pipeline {
             //}
 
             steps {
-                bat 'build-wrapper-win-x86-64.exe --out-dir bw-output gcc -o CalculatorTest -I ./src ./src/Calculator.cpp -lstdc++ -lm'
+                bat 'build-wrapper-win-x86-64.exe --out-dir bw-output gcc -o CalculatorTest -I ./src ./src/CalculatorMain.cpp ./src/Calculator.cpp -lstdc++ -lm'
                 bat 'sonar-scanner.bat -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_LOGIN_KEY} -Dsonar.projectKey=graichen_calculator-unit-test-example-cpp -Dsonar.organization=graichen -Dsonar.sources=. -Dsonar.cfamily.build-wrapper-output=bw-output '
             }
         }
